@@ -42,37 +42,22 @@ migrations = os.path.dirname(os.path.abspath(__file__))
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 if __name__ == '__main__':
+    pass
     # ваша логика
-    def get_file_list():
-        files = [f for f in os.listdir(migrations) if f.endswith('.sql')]
-        while True:
-            inp = input('Введите строку:')
-            for file in files:
-                with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), file)) as f:
-                    text = f.read()
-                if inp not in text:
-                    files.remove(file)
-            pprint(files)
-            print(len(files))
-
-
-
-    '''def get_file_list():
-        files = [f for f in os.listdir(migrations) if f.endswith('.sql')]
+def get_file_list():
+    files = [f for f in os.listdir(migrations) if f.endswith('.sql')]
+    while len(files) > 1:
+        inp = input('Введите строку:')
+        new_files = []
         for file in files:
             with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), file)) as f:
                 text = f.read()
-            inp = 'INSERT'
-            inp = inp.lower()
-            if inp not in text:
-               files.remove(file)
+            if inp in text:
+                new_files.append(file)
+        files = new_files
         pprint(files)
         print(len(files))
 
-    def open_file():
-        get_file_list()
-        for file in files:
-            with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), file)) as f:
-                print(f.read())'''
 
-    get_file_list()
+
+get_file_list()
